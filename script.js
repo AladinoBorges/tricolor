@@ -2,11 +2,16 @@ const bolas = document.getElementsByClassName ('ball');
 const textoCor = document.getElementById ('rgb-color');
 const textoResposta = document.getElementById ('answer');;
 const botaoReiniciar = document.getElementById ('reset-game');
+const pontuacao = document.getElementById ('score');
+const placar = localStorage.getItem ('Pontos');
 
-let pontuacao = localStorage.getItem ('pontos');
-pontuacao = document.getElementById ('score');
+let pontos = 0;
 
 const cores = [];
+
+if (placar) {
+    pontos = parseInt (placar);
+}
 
 function numeroAleatorio (mul) {
     
@@ -27,10 +32,10 @@ function cliqueNaBola (event) {
     if (corSelecionada === textoCor.textContent) {
         textoResposta.textContent = "Acertou!";
         //Código para guardar o score é adicionado aqui
-        let dadosPontos = parseInt(pontuacao.textContent);
-        
-        localStorage.setItem ('pontos', pontuacao);
-        pontuacao.textContent = dadosPontos + 3 + " Pontos";
+        pontos += 3;
+        pontuacao.textContent = pontos + " Pontos";
+
+        localStorage.setItem ('Pontos', pontos);
 
     } else {
         textoResposta.textContent = "Errou! Tente novamente.";
