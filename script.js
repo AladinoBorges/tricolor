@@ -2,6 +2,7 @@ const bolas = document.getElementsByClassName ('ball');
 const textoCor = document.getElementById ('rgb-color');
 const textoResposta = document.getElementById ('answer');;
 const botaoReiniciar = document.getElementById ('reset-game');
+const botaoApagarPontos = document.getElementById ('reset-score');
 const pontuacao = document.getElementById ('score');
 const placar = localStorage.getItem ('Pontos');
 
@@ -57,9 +58,16 @@ function adicionaCorAleatoria () {
 
 adicionaCorAleatoria ();
 
+function limparPontuacao () {
+
+    localStorage.clear ();
+    pontuacao.textContent = 0 + " Pontos";
+}
+
 function reiniciaJogo () {
 
     window.location.reload ();
 }
 
 botaoReiniciar.addEventListener ('click', reiniciaJogo);
+botaoApagarPontos.addEventListener ('click', limparPontuacao);
